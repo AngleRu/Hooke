@@ -16,6 +16,10 @@ app.get('/editor', (req, res) => {
     res.sendFile(path.join(initial_path, "editor.html"));
 })
 
+app.get('/article/:id', (req, res) => {
+    res.sendFile(path.join(initial_path, "article.html"));
+})
+
 // upload link
 app.post('/upload', (req, res) => {
     let file = req.files.image;
@@ -27,9 +31,9 @@ app.post('/upload', (req, res) => {
 
     // create upload
     file.mv(path, (err, result) => {
-        if(err){
+        if (err) {
             throw err;
-        } else{
+        } else {
             // our image upload path
             res.json(`uploads/${imagename}`)
         }
@@ -45,5 +49,5 @@ app.use((req, res) => {
 })
 
 app.listen("3000", () => {
-    console.log('listening......');
+    console.log('listening on port 3000......');
 })

@@ -1,49 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog : Homepage</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Blog : Homepage</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/home.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/home.css" />
+    </head>
+    <body>
+        <nav class="navbar">
+            <img src="img/logo_hooke.png" class="logo" alt="" />
+            <ul class="links-container">
+                <li class="link-item"><a href="/" class="link">home</a></li>
+                <li class="link-item">
+                    <a href="/editor" class="link">editor</a>
+                </li>
+            </ul>
+        </nav>
 
+        <header class="header">
+            <div class="content">
+                <h1 class="heading">
+                    <span class="small">Bienvenue chez</span>
+                    <span class="no-fill">Hooké</span>
+                    <span class="small">de la pêche</span>
+                </h1>
+                <a href="/editor" class="btn">Ecrire un article</a>
+            </div>
+        </header>
 
-</head>
-<body>
-    <nav class="navbar">
-        <img src="img/logo_hooke.png" class="logo" alt="">
-        <ul class="links-container">
-            <li class="link-item"><a href="/" class="link">home</a></li>
-            <li class="link-item"><a href="/editor" class="link">editor</a></li>
-        </ul>
-    </nav>
+        <!--blog section-->
+        <section class="blogs-section"></section>
+        <script>
+            fetch(
+                "https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU&content_type=blogPost"
+            )
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (result) {
+                    for (let i = 0; i < result.items.length; i++) {
+                        let blog = result.items[i];
+                        let blogContainer = document.createElement("div");
+                        blogContainer.classList.add("blogs-card");
 
-    <header class="header">
-        <div class="content">
-            <h1 class="heading">
-                <span class="small">Bienvenue chez</span>
-                <span class="no-fill">Hooké</span>
-                <span class="small">de la pêche</span>
-            </h1>
-            <a href="/editor" class="btn">Ecrire un article</a>
-        </div>
-    
-    </header>
+                        let blogTitle = document.createElement("h1");
+                        blogContainer.classList.add("blog-title");
+                        blogTitle.innerHTML = blog.fields.name;
 
-    <!--blog section-->
-    <section class="blogs-section">
-        <div class="blogs-card">
-            <img src="img/pike.png" class="blog-image" alt="">
-            <h1 class="blog-title">Le requin d'eau douce</h1>
-            <p class="blog-overview">
-                Le brochet, aussi appelé "le requin d'eau douce..."
-            </p>
-            <a href="/" class="btn dark">read</a>
-        </div>
+                        let blogOverview = document.createElement("p");
+                        blogOverview.classList.add("blog-overview");
+                        blogOverview.innerHTML = blog.fields.littleDesc;
 
-    </section>
+                        let button = document.createElement("a");
+                        button.href = `/article/${blog.sys.id}`;
+                        button.classList.add("btn");
+                        button.classList.add("dark");
+                        button.innerHTML = "Read more";
 
-</body>
+                        const sourceImage = blog.fields.picture
+                            ? `https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries/${blog.fields.picture.sys.id}?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU`
+                            : "img/pike.png";
+                        let img = document.createElement("img");
+                        img.src = sourceImage;
+                        img.classList.add("blog-image");
+
+                        blogContainer.appendChild(img);
+                        blogContainer.appendChild(blogTitle);
+                        blogContainer.appendChild(blogOverview);
+                        blogContainer.appendChild(button);
+
+                        document
+                            .querySelector(".blogs-section")
+                            .appendChild(blogContainer);
+                    }
+                });
+        </script>
+    </body>
 </html>

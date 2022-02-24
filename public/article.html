@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Blog : Homepage</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../css/home.css" />
+    </head>
+    <body>
+        <nav class="navbar">
+            <img src="../img/logo_hooke.png" class="logo" alt="" />
+            <ul class="links-container">
+                <li class="link-item"><a href="/" class="link">home</a></li>
+                <li class="link-item">
+                    <a href="/editor" class="link">editor</a>
+                </li>
+            </ul>
+        </nav>
+        <br />
+        <br />
+        <main style="padding: 30px">
+            <h1 id="title"></h1>
+        </main>
+
+        <script async>
+            const selectedId = window.location.pathname.split("/")[2];
+
+            fetch(
+                `https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries/${selectedId}?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU`
+            )
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (result) {
+                    document.querySelector(
+                        "#title"
+                    ).innerHTML = `coucou le titre est ${result.fields.name}`;
+                });
+        </script>
+    </body>
+</html>
