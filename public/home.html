@@ -18,7 +18,7 @@
             <ul class="links-container">
                 <li class="link-item"><a href="/" class="link">home</a></li>
                 <li class="link-item">
-                    <a href="/editor" class="link">editor</a>
+                    <a href="/Contact" class="link">Contact</a>
                 </li>
             </ul>
         </nav>
@@ -30,7 +30,7 @@
                     <span class="no-fill">Hooké</span>
                     <span class="small">de la pêche</span>
                 </h1>
-                <a href="/editor" class="btn">Ecrire un article</a>
+                <a href="/Contact" class="btn">Ecrire un article</a>
             </div>
         </header>
 
@@ -38,7 +38,8 @@
         <section class="blogs-section"></section>
         <script>
             fetch(
-                "https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU&content_type=blogPost"
+                "https://cdn.contentful.com/spaces/1ohlvnzo3wjp/environments/master/entries?access_token=67i-KmWC-UuTk5r0Xv5XS2ZfpPG-eUuKOmNFn3Pj9kY"
+                //"https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU&content_type=blogPost"
             )
                 .then(function (response) {
                     return response.json();
@@ -61,10 +62,11 @@
                         button.href = `/article/${blog.sys.id}`;
                         button.classList.add("btn");
                         button.classList.add("dark");
-                        button.innerHTML = "Read more";
+                        button.innerHTML = "En savoir plus";
 
                         const sourceImage = blog.fields.picture
-                            ? `https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries/${blog.fields.picture.sys.id}?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU`
+                            //? `https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries/${blog.fields.picture.sys.id}?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU`
+                            ? `https://cdn.contentful.com/spaces/1ohlvnzo3wjp/environments/master/entries/${blog.fields.picture.sys.id}?access_token=67i-KmWC-UuTk5r0Xv5XS2ZfpPG-eUuKOmNFn3Pj9kY`
                             : "img/pike.png";
                         let img = document.createElement("img");
                         img.src = sourceImage;

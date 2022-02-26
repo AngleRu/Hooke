@@ -32,7 +32,8 @@
             const selectedId = window.location.pathname.split("/")[2];
 
             fetch(
-                `https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries/${selectedId}?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU`
+                `https://cdn.contentful.com/spaces/1ohlvnzo3wjp/environments/master/entries/${selectedId}?access_token=67i-KmWC-UuTk5r0Xv5XS2ZfpPG-eUuKOmNFn3Pj9kY`
+                //`https://cdn.contentful.com/spaces/uv2r6jquzj42/environments/master/entries/${selectedId}?access_token=TUK3MUiSHQQMimX-B_cAyL9P58KIifrGf_1bpODhymU`
             )
                 .then(function (response) {
                     return response.json();
