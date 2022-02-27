@@ -104,10 +104,11 @@ body {
 .blog-overview {
     margin: 10 px 0 20px;
     line-height: 30px;
+    margin-bottom: 20px;
 }
 
 .btn.dark {
-    background: #1b1b1b;
+    background: #184977;
     color: #fff;
-    margin-left: 180px ;
+    margin-left: 180px;
 }
